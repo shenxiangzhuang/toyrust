@@ -1,0 +1,2 @@
+# toyrust
+Toy Rust Library
