@@ -1,0 +1,16 @@
+[package]
+name = "toyrust"
+version = "0.1.0"
+edition = "2021"
+authors = ["Mathew Shen datahonor@example.com"]
+description = "A Toy Rust library"
+repository = "https://github.com/shenxiangzhuang/toyrust"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "toyrust"
+
+[dependencies]
+
+[dev-dependencies]
