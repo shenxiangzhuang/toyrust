@@ -5,6 +5,7 @@ edition = "2021"
 authors = ["Mathew Shen datahonor@example.com"]
 description = "A Toy Rust library"
 repository = "https://github.com/shenxiangzhuang/toyrust"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
