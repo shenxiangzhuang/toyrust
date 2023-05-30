@@ -2,7 +2,7 @@
 name = "toyrust"
 version = "0.1.0"
 edition = "2021"
-authors = ["Mathew Shen datahonor@example.com"]
+authors = ["Xiangzhuang Shen <datahonor@example.com>"]
 description = "A Toy Rust library"
 repository = "https://github.com/shenxiangzhuang/toyrust"
 license = "MIT"
