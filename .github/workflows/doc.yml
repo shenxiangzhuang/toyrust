@@ -1,9 +1,7 @@
 name: Rust Documentation
 
 on:
-  push:
-    branches:
-      - master
+  change:
 
 jobs:
   build-and-publish-docs:
