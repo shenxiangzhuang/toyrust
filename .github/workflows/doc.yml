@@ -20,8 +20,15 @@ jobs:
       - name: Build documentation
         run: cargo doc --no-deps
 
-      - name: Publish documentation
-        uses: actions/upload-artifact@v3
+      - name: Commit documentation
+        uses: EndBug/add-and-commit@v9
         with:
-          name: docs
-          path: target/doc
+          message: "Update documentation"
+          add: "docs/"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          branch: gh-pages
+          directory: docs
+          github_token: ${{ secrets.GITHUB_TOKEN }}
