@@ -1,42 +1,31 @@
-name: Rust Documentation
+name: Deploy Docs to GitHub Pages
 
 on:
   push:
-    branches:
-      - master
+    branches: [ "master" ]
   pull_request:
-
+    branches: [ "master" ]
 
 jobs:
-  build-and-publish-docs:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    release:
+      name: GitHub Pages
+      runs-on: ubuntu-latest
 
-      - name: Install Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v3
 
-      - name: Build documentation
-        run: cargo doc --no-deps
 
-      - name: Publish documentation
-        uses: actions/upload-artifact@v2
-        with:
-          name: docs
-          path: target/doc
-
-      - name: Commit documentation
-        uses: EndBug/add-and-commit@v9
-        with:
-          message: "Update documentation"
-          add: "docs/"
-
-      - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          branch: gh-pages
-          directory: docs
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        - name: Install Rust toolchain
+          run: rustup update --no-self-update stable
+    
+        - name: Build Documentation
+          run: cargo doc --all --no-deps
+    
+        - name: Deploy Docs
+          uses: peaceiris/actions-gh-pages@3.4.0 # v3.4.0
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_branch: gh-pages
+            publish_dir: ./target/doc
+            force_orphan: true
