@@ -1,0 +1,31 @@
+name: Deploy Docs to GitHub Pages
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+    release:
+      name: GitHub Pages
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v3
+
+
+        - name: Install Rust toolchain
+          run: rustup update --no-self-update stable
+    
+        - name: Build Documentation
+          run: cargo doc --all --no-deps
+    
+        - name: Deploy Docs
+          uses: peaceiris/actions-gh-pages@v3 # v3.4.0
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_branch: gh-pages
+            publish_dir: ./target/doc
+            force_orphan: true
